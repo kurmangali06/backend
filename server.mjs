@@ -10,7 +10,7 @@ import  checkAuth  from "./utlis/checkAuth.mjs"
 import { registerValidator, loginValidator, postCreateValidator } from "./validations.mjs";
 import handleValidationErrors from "./utlis/handleValidationErrors.mjs";
 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.c2web.mongodb.net/?retryWrites=true&w=majority").then(()=> {
+mongoose.connect(process.env.MONGODB_URL).then(()=> {
   console.log("mongodb ok!")
 }).catch((err)=> console.log("mongodb error", err))
 
@@ -47,7 +47,7 @@ app.post('/posts', checkAuth, postCreateValidator, handleValidationErrors,  crea
 app.delete('/posts/:id', checkAuth, remove);
 app.patch('/posts/:id',checkAuth, postCreateValidator, handleValidationErrors, update);
 
-app.listen(5000, (err) => {
+app.listen(process.env.PORT || 5000, (err) => {
   if (err) {
     return console.log("err", err);
   }
