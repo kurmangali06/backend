@@ -10,9 +10,9 @@ import {  create, getAll, getOne, remove, update } from "./contrilles/PostContro
 import  checkAuth  from "./utlis/checkAuth.mjs"
 import { registerValidator, loginValidator, postCreateValidator } from "./validations.mjs";
 import handleValidationErrors from "./utlis/handleValidationErrors.mjs";
-// process.env.MONGODB_URL
 
-mongoose.connect('mongodb+srv://admin:admin@cluster0.c2web.mongodb.net/?retryWrites=true&w=majority').then(()=> {
+// 'mongodb+srv://admin:admin@cluster0.c2web.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(process.env.MONGODB_URL).then(()=> {
   console.log("mongodb ok!")
 }).catch((err)=> console.log("mongodb error", err))
 
